@@ -28,7 +28,7 @@ class Telegram:
 
 class Server:
     PORT = int(env.get("PORT", 8480))
-    BIND_ADDRESS = str(env.get("BIND_ADDRESS", "0.0.0.0"))
+    BIND_ADDRESS = str(env.get("BIND_ADDRESS", "file2link.sh-vpn.shop"))
     PING_INTERVAL = int(env.get("PING_INTERVAL", "1200"))
     HAS_SSL = str(env.get("HAS_SSL", "0").lower()) in ("1", "true", "t", "yes", "y")
 
