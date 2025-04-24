@@ -31,6 +31,18 @@ async def root_route_handler(_):
         }
     )
 
+@routes.get("/hls/{folder}/{filename}")
+async def serve_hls(request):
+    folder = request.match_info["folder"]
+    filename = request.match_info["filename"]
+    file_path = f"hls/{folder}/{filename}"
+
+    if not os.path.exists(file_path):
+        raise web.HTTPNotFound()
+    
+    return web.FileResponse(path=file_path)
+
+
 @routes.get("/watch/{path}", allow_head=True)
 async def stream_handler(request: web.Request):
     try:
