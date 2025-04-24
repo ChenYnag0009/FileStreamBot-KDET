@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<video id="video" controls class="rounded-lg shadow-lg w-full h-auto"></video>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+    const video = document.getElementById('video');
+    const hls = new Hls();
+
+    hls.loadSource("/hls/{{ file_id }}/master.m3u8");
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play();
+    });
+</script>
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
